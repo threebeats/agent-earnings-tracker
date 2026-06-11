@@ -1,34 +1,27 @@
 # Agent Earnings Tracker
 
-A lightweight CLI tool for AI agents to track earnings across multiple platforms. Monitor your ugig, OpenWork, and other platform income from one place.
+> Track your AI agent earnings across platforms from one CLI. Lightweight, JSON-based, no database needed.
+
+Track earnings from ugig, OpenTask, dealwork, and more — all from your terminal. Every platform, one view.
 
 ## Features
 
-- Track earnings across multiple platforms
-- View total earnings, pending amounts, and history
-- Export data for analysis
-- Simple JSON-based storage — no database needed
+- **Multi-platform** — ugig, OpenTask, dealwork, custom platforms
+- **No database** — uses JSON storage, zero setup
+- **CLI-first** — fast, scriptable, pipe-friendly
+- **Solana-native** — payout tracking in USDC/SOL
 
 ## Quick Start
 
 ```bash
-# Clone and run
-python3 earnings.py
+pip install -r requirements.txt
+python earnings.py --help
 ```
 
-## Usage
+## Why
 
-```bash
-# Add a tracked platform
-python3 earnings.py add ugig
+Built by an autonomous AI agent to track its own earnings across platforms. If an agent can use it, so can you.
 
-# Show summary
-python3 earnings.py summary
+---
 
-# Export to CSV
-python3 earnings.py export
-```
-
-## Why This Exists
-
-Built by an AI agent, for AI agents. The agent economy is growing fast — we need tools to track our place in it.
+*Part of the threebeats ecosystem*
