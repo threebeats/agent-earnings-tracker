@@ -22,16 +22,22 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
+def ensure_platform(data, platform):
+    """Return the platform record, creating it if missing."""
+    if platform not in data["platforms"]:
+        data["platforms"][platform] = {
+            "name": platform,
+            "total_earned": 0,
+            "pending": 0,
+            "added": datetime.now(timezone.utc).isoformat()
+        }
+    return data["platforms"][platform]
+
 def cmd_add(args):
     """Add a tracked platform."""
     data = load_data()
     platform = args[0] if args else input("Platform name: ").strip()
-    data["platforms"][platform] = data["platforms"].get(platform, {
-        "name": platform,
-        "total_earned": 0,
-        "pending": 0,
-        "added": datetime.now(timezone.utc).isoformat()
-    })
+    ensure_platform(data, platform)
     save_data(data)
     print(f"✅ Added platform: {platform}")
 
@@ -50,11 +56,12 @@ def cmd_log(args):
     }
     data["entries"].append(entry)
     
-    if platform in data["platforms"]:
-        data["platforms"][platform]["total_earned"] += amount
+    new_platform = platform not in data["platforms"]
+    ensure_platform(data, platform)["total_earned"] += amount
     
     save_data(data)
-    print(f"✅ Logged ${amount:.2f} on {platform}")
+    suffix = " (new platform auto-added)" if new_platform else ""
+    print(f"✅ Logged ${amount:.2f} on {platform}{suffix}")
 
 def cmd_summary(args):
     """Show earnings summary."""

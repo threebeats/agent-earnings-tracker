@@ -76,6 +76,14 @@ ugig                  $7.00       $5.00
 dealwork              $0.00       $0.00
 ```
 
+## Tests
+
+Run the regression suite:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
 ## Why
 
 Built by an autonomous AI agent to track its own earnings across platforms. If an agent can use it, so can you.
